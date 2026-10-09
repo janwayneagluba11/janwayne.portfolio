@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Jan Wayne Agluba | Engineering Portfolio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@112,800;112,900&family=Lora:wght@400;600&family=Space+Mono&display=swap" rel="stylesheet">
+<style>
+:root{--blue:#354aa0;--ink:#1f1f1f;--grey:#bdbdbd;--white:#fff;--head:'Archivo','Arial Black',sans-serif;--body:'Lora',Georgia,serif;--mono:'Space Mono',monospace}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:var(--body);color:var(--ink);background:var(--white);font-size:1.1rem;line-height:1.6}
+h1,h2,h3{font-family:var(--head);font-weight:900;line-height:1.1}
+img{max-width:100%;display:block}
+a{color:inherit}
+:focus-visible{outline:3px solid var(--blue);outline-offset:3px}
+
+/* nav */
+nav{display:flex;justify-content:space-between;align-items:center;padding:1rem 2rem;position:absolute;top:0;left:0;right:0;z-index:5}
+nav .home{font-family:var(--head);font-weight:900;font-size:2rem;text-decoration:none;letter-spacing:.02em}
+.links{display:flex;gap:1rem;align-items:center}
+.in{width:50px;height:50px;border:2px solid currentColor;border-radius:8px;display:grid;place-items:center;font-family:var(--head);font-size:1.3rem;text-decoration:none}
+.email{font-family:var(--mono);font-size:.9rem;padding:1rem 1.8rem;border-radius:40px;text-decoration:none;background:var(--ink);color:var(--white)}
+.light nav{color:var(--white)}
+.light .email{background:var(--grey);color:var(--ink)}
+
+/* hero */
+.hero{background:var(--blue);color:var(--white);padding:9rem 2rem 3rem;text-align:right}
+.hero h1{font-size:clamp(2.6rem,8vw,6.5rem)}
+
+section{padding:4rem 2rem}
+section>h2{text-align:center;font-size:clamp(2rem,5vw,3.5rem);margin-bottom:2.5rem}
+
+/* about */
+.photos{display:flex;justify-content:center;align-items:center;gap:2rem;flex-wrap:wrap;max-width:1200px;margin:0 auto 3rem}
+.photos img{height:420px;width:auto;object-fit:cover}
+.photos img:nth-child(1){margin-top:60px}
+.photos img:nth-child(3){margin-top:30px}
+.about{max-width:760px;margin:0 auto;text-align:center}
+.about p{margin-bottom:1rem}
+
+/* carousel */
+.carousel{position:relative;max-width:1300px;margin:0 auto}
+.track{display:flex;gap:1.5rem;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none;padding:0 .5rem}
+.track::-webkit-scrollbar{display:none}
+.card{flex:0 0 min(380px,82%);scroll-snap-align:start;display:flex;flex-direction:column}
+.card img,.ph{width:100%;aspect-ratio:4/3;object-fit:cover;background:#e8e8ee}
+.card h3{font-size:1.5rem;margin:1.2rem 0 .2rem}
+.card .sub{font-size:1rem}
+.card p.d{margin:1rem 0;font-size:1rem;flex:1}
+.btn{font-family:var(--mono);font-size:.85rem;background:var(--ink);color:var(--white);border-radius:40px;padding:1rem 1.6rem;text-decoration:none;align-self:flex-start}
+.arrow{position:absolute;top:35%;width:60px;height:60px;border-radius:50%;border:0;background:rgba(40,40,40,.85);color:var(--white);font-size:1.8rem;cursor:pointer}
+.arrow.l{left:-8px}.arrow.r{right:-8px}
+
+/* project pages */
+.page{display:none}
+.page.show{display:block}
+.proj{background:var(--grey);min-height:100vh;padding:7rem 2rem 4rem}
+.proj .wrap{display:grid;grid-template-columns:1fr 1fr;gap:3rem;max-width:1500px;margin:0 auto}
+.proj h1{font-size:clamp(2rem,4.5vw,3.5rem);margin-bottom:2rem}
+.proj ul{margin:1rem 0 0 1.5rem}.proj li{margin-bottom:.8rem}
+.proj p{margin-bottom:1rem}
+.proj figure{margin-bottom:2rem}
+.proj figcaption{font-size:.95rem;margin-top:.4rem}
+.rover{background:var(--white)}
+.result{font-family:var(--body);font-weight:600;font-size:1.6rem;text-align:center;max-width:900px;margin:4rem auto 2rem}
+.row2{display:grid;grid-template-columns:1fr 1fr;gap:2rem;max-width:1500px;margin:0 auto}
+.work{max-width:1500px;margin:4rem auto 0;border-top:1px solid var(--ink);padding-top:2rem}
+.work h2{font-size:2.5rem;margin-bottom:1rem}
+.work .cols{display:grid;grid-template-columns:1fr 1fr;gap:3rem}
+.work h4{font-family:var(--head);font-size:1rem;margin:2rem 0 .6rem}
+.gal{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:1.5rem;margin-top:2rem}
+.gal img{width:100%;object-fit:contain;background:#fff}
+
+.connect{background:var(--blue);color:var(--white);padding:5rem 2rem;min-height:360px}
+.connect h2{font-size:clamp(2rem,5vw,3.5rem);margin-bottom:2rem}
+.connect p{margin-bottom:1rem}
+.proj video{display:block}
+.row2 img,.gal figure img{width:100%}
+@media(max-width:800px){
+ nav{padding:1rem}.email{padding:.8rem 1.2rem}
+ .proj .wrap,.row2,.work .cols{grid-template-columns:1fr}
+ .photos img{height:300px;margin:0!important}
+ .arrow{display:none}
+}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+</style>
+</head>
+<body>
+
+<!-- ============ HOME ============ -->
+<div class="page light show" id="home">
+  <nav>
+    <a class="home" href="#home">HOME</a>
+    <div class="links">
+      <a class="in" href="https://www.linkedin.com/in/jan-wayne-agluba-5745bb308/" target="_blank" rel="noopener" aria-label="LinkedIn">in</a>
+      <a class="email" href="mailto:janwayne.agluba11@gmail.com">EMAIL</a>
+    </div>
+  </nav>
+  <header class="hero"><h1>Jan Wayne Agluba<br>Portfolio</h1></header>
+
+  <section id="about">
+    <h2>About Me</h2>
+    <div class="photos">
+      <img src="images/about-1.jpg" alt="Jan Wayne working on a Baja SAE suspension" onerror="this.style.display='none'">
+      <img src="images/about-2.jpg" alt="Portrait of Jan Wayne Agluba" onerror="this.style.display='none'">
+      <img src="images/about-3.jpg" alt="Jan Wayne presenting with a microphone" onerror="this.style.display='none'">
+    </div>
+    <div class="about">
+      <p>My name Jan Wayne Agluba, and I am currently a third year undergraduate student pursuing a Bachelor of Science in Mechanical Engineering at the University of California, Irvine.</p>
+      <p>Over the past few years, I’ve worked on a variety of hands-on projects, from creating drone system to designing rover prototypes and developing a chassis from scratch in Baja SAE.</p>
+      <p>These experiences have strengthened my skills in CAD, prototyping, and teamwork but more importantly, they’ve taught me the value of collaboration and persistence in engineering by taking challenges that push me to learn and innovate.</p>
+    </div>
+  </section>
+
+  <section id="projects">
+    <h2>Projects</h2>
+    <div class="carousel">
+      <button class="arrow l" aria-label="Previous projects">&larr;</button>
+      <div class="track" id="track">
+        <article class="card">
+          <img src="images/baja.jpg" alt="UCI Baja SAE car on course">
+          <h3>UCI BAJA RACING</h3><span class="sub">BAJA SAE</span>
+          <p class="d">Student-led engineering team that designs, manufactures, and competes with a custom off-road vehicle in the SAE Baja competition</p>
+          <a class="btn" href="#baja">Read More</a>
+        </article>
+        <article class="card">
+          <img src="images/rover.jpg" alt="Fire-extinguishing rover">
+          <h3>Fire-Extinguishing Rover</h3><span class="sub">Filipinx Undergraduate Scientists/Engineers in an Organized Network (FUSION)</span>
+          <p class="d">The FUSION engineering project is a multidisciplinary student team that design, builds, and tests a remotely operated systems.</p>
+          <a class="btn" href="#rover">Read More</a>
+        </article>
+        <article class="card">
+          <img src="images/drone.jpg" alt="Precision drone on grass">
+          <h3>Precision Drone</h3><span class="sub">FUSION Engineering Project</span>
+          <p class="d">Designed and improved a precision drone aimed at having high navigation and reliable performance.</p>
+          <a class="btn" href="#drone">Read More</a>
+        </article>
+        <article class="card">
+          <img src="images/sony.jpg" alt="Sony A6000 CAD model">
+          <h3>SONY CAMERA CAD</h3><span class="sub">Product Design</span>
+          <p class="d">Created a CAD of the Sony A6000 camera through SolidWorks, with full articulation of screen.</p>
+          <a class="btn" href="#sony">Read More</a>
+        </article>
+        <article class="card">
+          <img src="images/tracker.jpg" alt="Fitness tracker CAD">
+          <h3>Fitness Tracker</h3><span class="sub">Product Design</span>
+          <p class="d">Led a team designing and building a wearable fitness tracker capable of monitoring activity and collecting user data</p>
+          <a class="btn" href="#tracker">Read More</a>
+        </article>
+        <article class="card">
+          <img src="images/rc-rover.jpg" alt="Remote controlled rover CAD">
+          <h3>Remote Controlled Rover</h3><span class="sub">Engineering Project</span>
+          <p class="d">Designed and developed of a rover built for mobility and system integration</p>
+          <a class="btn" href="#rc">Read More</a>
+        </article>
+      </div>
+      <button class="arrow r" aria-label="Next projects">&rarr;</button>
+    </div>
+  </section>
+  <footer class="connect" id="contact">
+    <h2>Connect with Me</h2>
+    <p>Irvine California</p>
+    <p>(559)590-1901<br><a href="mailto:janwayne.agluba11@gmail.com">janwayne.agluba11@gmail.com</a></p>
+    <p><a href="https://www.linkedin.com/in/jan-wayne-agluba-5745bb308/" target="_blank" rel="noopener">LINKED IN</a></p>
+  </footer>
+</div>
+
+<!-- ============ BAJA ============ -->
+<div class="page light" id="baja">
+  <nav>
+    <a class="home" href="#home">HOME</a>
+    <div class="links">
+      <a class="in" href="https://www.linkedin.com/in/jan-wayne-agluba-5745bb308/" target="_blank" rel="noopener" aria-label="LinkedIn">in</a>
+      <a class="email" href="mailto:janwayne.agluba11@gmail.com">EMAIL</a>
+    </div>
+  </nav>
+  <div class="proj">
+    <div class="wrap">
+      <img src="images/baja-team.jpg" alt="Anteater Baja Racing team 2025-2026">
+      <div>
+        <h1>Chassis &amp; Human Interface</h1>
+        <p>As part of the Chassis &amp; Human Interface sub-team, I designed and integrated the vehicle’s roll cage and driver-focused systems.</p>
+        <p>I used SolidWorks to develop and refine the chassis geometry while coordinating mounting locations and packaging requirements with the suspension, drivetrain, and other vehicle subsystems. I also use FEA to evaluate the chassis under front, side, rear, and rollover loading conditions and guide design iterations based on stress, deformation, and structural efficiency.</p>
+        <ul>
+          <li>Designed and optimized roll cage and chassis, balancing structural strength, weight reduction, driver ergonomics, and manufacturability</li>
+          <li>Reduced chassis weight through optimization of tube geometry, member placement, and overall vehicle packaging while maintaining required structural performance</li>
+          <li>Redesigned engine mounting geometry and evaluated vibration behavior to improve power train integration and reduce vibration transmitted through the chassis.</li>
+          <li>Designed chassis components with fabrication in mind, accounting for tube cutting, notching, bending, fixturing, and welding</li>
+          <li>Participated in design reviews and cross-functional engineering discussions to justify design change.</li>
+        </ul>
+      </div>
+    </div>
+
+    <p class="result">Out of 77 cars, UCI placed 21st, just behind San Diego State at 20th and UCLA at 17th in the 2026 Baja SAE Competition in Oregon</p>
+    <div class="row2">
+      <!-- Replace with your own video file in /images -->
+      <video controls preload="metadata" style="width:100%;background:#000" poster="images/baja-video-poster.jpg"><source src="images/baja-run.mp4" type="video/mp4"></video>
+      <img src="images/baja-results.png" alt="2026 Baja SAE results table">
+    </div>
+
+    <div class="work">
+      <h2>My Work</h2>
+      <div class="cols">
+        <div class="gal">
+          <img src="images/fea-front.png" alt="ABR build book: front impact FEA">
+          <img src="images/fea-rollover.png" alt="ABR build book: roll over FEA">
+        </div>
+        <div>
+          <p>One contribution I’ve made was CADing the chassis 2026-2027 season. Using our current Corsair design, I’ve worked with different subteams, such as suspension to fix the geometry of the front toe box smaller. This allowed us to have an overall smaller chassis profile.</p>
+          <p>I’ve also conducted all FEAs impact simulations and engine vibration analysis on the chassis using ANSYS.</p>
+          <div class="cols" style="gap:2rem">
+            <div><h4>Simple ideas</h4><p>Design a chassis that is lighter and small but still meet all Baja SAE rules</p></div>
+            <div><h4>Lasting impact</h4><ul><li>Smaller chassis - 36.6% weight reduction</li><li>Lower center of gravity</li><li>Better packaging</li></ul></div>
+          </div>
+        </div>
+      </div>
+      <div class="gal">
+        <img src="images/chassis-weights.png" alt="Chassis comparison: Scoundrel 120 lbs, Corsair 102.5 lbs, Spectre predicted 65 lbs">
+        <img src="images/chassis-side.png" alt="Side view: Corsair vs Spectre chassis">
+        <img src="images/chassis-top.png" alt="Top view: Corsair vs Spectre chassis">
+        <img src="images/chassis-team.jpg" alt="Chassis and H.I. team">
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ============ ROVER ============ -->
+<div class="page" id="rover">
+  <nav>
+    <a class="home" href="#home">HOME</a>
+    <div class="links">
+      <a class="in" href="https://www.linkedin.com/in/jan-wayne-agluba-5745bb308/" target="_blank" rel="noopener" aria-label="LinkedIn">in</a>
+      <a class="email" href="mailto:janwayne.agluba11@gmail.com">EMAIL</a>
+    </div>
+  </nav>
+  <div class="proj rover">
+    <div class="wrap">
+      <div>
+        <h1>Fire-Extinguishing Rover</h1>
+        <figure><img src="images/rover-1.png" alt="1st iteration CAD"><figcaption>1st iteration of all our components</figcaption></figure>
+      </div>
+      <div style="padding-top:3rem">
+        <p>Led a team of engineers in creating a extinguishing rover. As a sub-team lead, I was leading the research, design, and prototyping and testing. Our design for this rover was a 1/10 scale RC crawler that would be able to spray water, hitting a target from multiple distances and target sizes.</p>
+        <p>This project strengthened my leadership skills and on-the sport problem solving skills. It also strengthened my communication skills.</p>
+        <p>My biggest role was ensuring all parts of the rover were correctly integrated and work around issues that occurred. Another role was ensuring our 4WD system was working properly meaning understanding how the transmission and transfer case worked together to power the axles. Additionally, making sure the turn servo was strong enough to turn the axles</p>
+        <p>Secondly, I designed a turret system that allows full rotation for the water pump system. I was able to achieve a full rotation, have multiple mounting points onto the chassis, and create minimal water revisor onto the chassis</p>
+      </div>
+    </div>
+    <div class="row2" style="margin-top:2rem">
+      <figure><img src="images/rover-2.png" alt="2nd iteration CAD"><figcaption>2nd iteration of our components, added a placement for our Arduino and battery</figcaption></figure>
+      <figure><img src="images/rover-3.png" alt="3rd iteration CAD with shell"><figcaption>3rd iteration of our design, added a hard cover shell</figcaption></figure>
+    </div>
+    <div style="max-width:1500px;margin:2rem auto 0">
+      <video controls preload="metadata" style="width:100%;background:#000" poster="images/rover-video-poster.jpg"><source src="images/rover-demo.mp4" type="video/mp4"></video>
+      <p style="font-size:.95rem;margin-top:.4rem">Testing the rover on the course</p>
+    </div>
+    <div class="row2" style="margin-top:2rem">
+      <figure><img src="images/rover-4.jpg" alt="Manufacturing and testing"><figcaption>Manufacturing/testing our Arduino code and different components. Also completed test on the motor and drive system</figcaption></figure>
+      <figure><img src="images/rover-5.jpg" alt="Completed rover"><figcaption>Completed our design, 3D printed our hard cover shell, 3D printed water revisor and turret mount system.</figcaption></figure>
+    </div>
+  </div>
+</div>
+
+<!-- ============ DRONE ============ -->
+<div class="page light" id="drone">
+  <nav><a class="home" href="#home">HOME</a><div class="links"><a class="in" href="https://www.linkedin.com/in/jan-wayne-agluba-5745bb308/" target="_blank" rel="noopener" aria-label="LinkedIn">in</a><a class="email" href="mailto:janwayne.agluba11@gmail.com">EMAIL</a></div></nav>
+  <div class="proj">
+    <div class="wrap">
+      <figure><img src="images/drone-cad.png" alt="Drone CAD final integration"><figcaption>Final integration of CAD</figcaption></figure>
+      <div>
+        <h1>Precision Drone</h1>
+        <p>Designed and improved a precision drone aimed at having high navigation and reliable performance. My role involved CAD modeling, prototyping and collaborating with teammates to integrate mechanical system with electronics and controls.</p>
+        <p>This project strengthened my skills in design iteration, teamwork, and apply engineering principles to real-world challenges.</p>
+        <ul>
+          <li>CAD models of drone components with focus on weight reduction and structural stability</li>
+          <li>Prototyped and assembled to test components fit and overall system integration</li>
+          <li>Participated in design reviews and iterative testing to refine performance</li>
+        </ul>
+      </div>
+    </div>
+    <div class="work" style="border-color:transparent">
+      <h2>My Work</h2>
+      <div class="cols">
+        <div class="gal">
+          <figure><img src="images/claw-1.png" alt="Claw 1st iteration"><figcaption>1st iteration</figcaption></figure>
+          <figure><img src="images/claw-2.png" alt="Claw 2nd iteration"><figcaption>2nd iteration</figcaption></figure>
+        </div>
+        <div>
+          <p>One of my contributions was the craw mechanism of our drone. The main goal of our design was compatibility but strong enough to carry and hold a 2×2×2 block cube.</p>
+          <p>We 3D printed our claw mechanism with PETG as it was stronger than TPU and still light weight. Our design accounted for the blocks thickness. It also accommodated a smaller lightweight servo. The claw mechanism attached to the bottom of our drone frame with the servo inside the hardware casing.</p>
+        </div>
+      </div>
+      <div class="gal">
+        <figure><img src="images/claw-print-1.png" alt="First 3D test print"><figcaption>First 3d test print of claw mechanism</figcaption></figure>
+        <figure><img src="images/claw-print-2.png" alt="Second 3D test print"><figcaption>2nd 3D test print of claw mechanism</figcaption></figure>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ============ SONY ============ -->
+<div class="page" id="sony">
+  <nav style="color:var(--ink)"><a class="home" href="#home">HOME</a><div class="links"><a class="in" href="https://www.linkedin.com/in/jan-wayne-agluba-5745bb308/" target="_blank" rel="noopener" aria-label="LinkedIn">in</a><a class="email" href="mailto:janwayne.agluba11@gmail.com">EMAIL</a></div></nav>
+  <div class="proj rover">
+    <div class="wrap">
+      <div>
+        <h1>Sony Camera CAD</h1>
+        <p>Designed a fully detailed CAD model of the Sony A6000 mirrorless camera in SolidWorks by reverse engineering the product from reference images and videos. The project focused on developing advanced parametric modeling skills, assembly designed, and designed for manufacturing principles while accurately recreating the camera’s geometry and functional components. The completed assembly consists of multiple individually modeled parts with working mechanical features, demonstrating proficiency in complex CAD modeling, mechanical assemblies, and engineering documentation.</p>
+        <video controls preload="metadata" style="width:100%;max-width:520px;background:#000" poster="images/sony-video-poster.jpg"><source src="images/sony-demo.mp4" type="video/mp4"></video>
+      </div>
+      <div>
+        <div class="row2">
+          <figure><img src="images/sony-render.png" alt="Fully rendered Sony camera"><figcaption>Fully Rendered Model</figcaption></figure>
+          <figure><img src="images/sony-lens.png" alt="Camera with different lens"><figcaption>Modeled Camera with a different lens</figcaption></figure>
+        </div>
+        <p><b>Biggest takeaways: More than “I modeled a camera”</b></p>
+        <ul>
+          <li><b>Reversed Engineering:</b> I recreated a real product from reference images/videos rather than starting from supplied engineering drawings</li>
+          <li><b>Advanced SolidWorks Modeling:</b> I developed a complex geometry using parametric features and multiple modeling techniques</li>
+          <li><b>Assembly Design:</b> Created multiple individual components and brought them together into a functional assembly, demonstrating understanding of mates, interfaces, clearances, and component relationships.</li>
+          <li><b>Functional Mechanical Design:</b> Features such as a movable screen, dial, battery, detachable microphone, and interchangeable components show that I modeled functionality, not just exterior geometry</li>
+        </ul>
+      </div>
+    </div>
+    <div class="work"><h2 style="font-family:var(--mono);font-weight:400;font-size:1.4rem">Additional Features</h2>
+      <div class="gal">
+        <figure><img src="images/sony-exploded.png" alt="Exploded view"><figcaption>Exploded View</figcaption></figure>
+        <figure><img src="images/sony-detached.png" alt="Detached camera lens"><figcaption>Detached Camera Lens</figcaption></figure>
+        <figure><img src="images/sony-fea.png" alt="FEA on corner impact"><figcaption>FEA on corner impact</figcaption></figure>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ============ FITNESS TRACKER ============ -->
+<div class="page light" id="tracker">
+  <nav><a class="home" href="#home">HOME</a><div class="links"><a class="in" href="https://www.linkedin.com/in/jan-wayne-agluba-5745bb308/" target="_blank" rel="noopener" aria-label="LinkedIn">in</a><a class="email" href="mailto:janwayne.agluba11@gmail.com">EMAIL</a></div></nav>
+  <div class="proj">
+    <div class="wrap">
+      <div class="row2" style="align-content:start">
+        <video controls preload="metadata" style="width:100%;background:#000" poster="images/tracker-video-poster.jpg"><source src="images/tracker-demo.mp4" type="video/mp4"></video>
+        <figure><img src="images/tracker-cad.png" alt="Fitness tracker CAD"><figcaption>CAD Model</figcaption></figure>
+      </div>
+      <div>
+        <h1>Fitness Tracker</h1>
+        <p>Led a team in designing and building a wearable fitness tracker capable of monitoring activity and collecting user data. As a lead, I coordinated tasks, managed deadlines, ensured collaboration between hardware and software development. My contribution included assembly hardware, integration sensors, and conducting testing to refine performance and reliability.</p>
+        <ul>
+          <li>Directed project planning and delegated task</li>
+          <li>Assembled and soldered components to build the hardware system</li>
+          <li>Oversaw testing and troubleshooting to improve accuracy and usability</li>
+          <li>Helped improve user interface design with lead coder</li>
+        </ul>
+      </div>
+    </div>
+    <div class="gal" style="max-width:1500px;margin:3rem auto 0">
+      <figure><img src="images/tracker-cad-closed.png" alt="Fitness tracker closed case CAD"><figcaption>Closed case CAD</figcaption></figure>
+      <figure><img src="images/tracker-prints.png" alt="3D test prints"><figcaption>3D test prints</figcaption></figure>
+      <figure><img src="images/tracker-open.jpg" alt="Full integration with open case" onerror="this.closest('figure').style.display='none'"><figcaption>Full integration w/open case</figcaption></figure>
+      <figure><img src="images/tracker-app-1.png" alt="Mobile app UI"><img src="images/tracker-app-2.png" alt="Mobile app UI sliders"><figcaption>Mobile App UI</figcaption></figure>
+      <figure><img src="images/tracker-schematic.png" alt="Hardware schematic"><figcaption>Hardware schematics</figcaption></figure>
+    </div>
+  </div>
+</div>
+
+<!-- ============ RC ROVER ============ -->
+<div class="page" id="rc">
+  <nav style="color:var(--ink)"><a class="home" href="#home">HOME</a><div class="links"><a class="in" href="https://www.linkedin.com/in/jan-wayne-agluba-5745bb308/" target="_blank" rel="noopener" aria-label="LinkedIn">in</a><a class="email" href="mailto:janwayne.agluba11@gmail.com">EMAIL</a></div></nav>
+  <div class="proj rover">
+    <div class="wrap">
+      <div>
+        <h1>Remote Controlled Rover</h1>
+        <p>Contributed to the design and development of a rover built for mobility and system integration. my focus was on manufacturing and electronics assembly, where I helped bring the CAD design into physical form. I also integrated all of electrical components. This project gave me hands-on experience with fabrication and soldering while working as part of a multidisciplinary team.</p>
+        <ul>
+          <li>performed manufacturing tasks cutting, drilling, and assembling rover components</li>
+          <li>Soldered and assembled electrical connections to integrate sensors and control systems</li>
+        </ul>
+        <p style="margin-top:2rem"><a class="btn" href="images/design-report.pdf" target="_blank" rel="noopener">Design Report</a></p>
+      </div>
+      <div>
+        <div class="row2">
+          <img src="images/rc-cad.png" alt="Rover CAD">
+          <img src="images/rc-top.jpg" alt="Built rover from above">
+        </div>
+        <div class="gal">
+          <img src="images/rc-build-1.jpg" alt="Cutting parts on a band saw">
+          <img src="images/rc-build-2.jpg" alt="Wiring electronics">
+          <img src="images/rc-build-3.jpg" alt="Assembling the rover">
+          <img src="images/rc-steering.jpg" alt="Steering linkage close-up">
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="page" id="soon">
+  <div class="proj"><div class="wrap"><div><h1>Coming soon</h1><p>This project page is still being written.</p><p><a href="#home">Back to home</a></p></div></div></div>
+</div>
+
+<script>
+// Simple hash router: #home, #baja, #rover, anything else -> coming soon
+function route(){
+  var id=(location.hash||'#home').slice(1);
+  if(!document.getElementById(id)||!document.getElementById(id).classList.contains('page')) id='soon';
+  document.querySelectorAll('.page').forEach(function(p){p.classList.toggle('show',p.id===id)});
+  window.scrollTo(0,0);
+  if(id==='home'&&!location.hash)return;
+}
+window.addEventListener('hashchange',route);route();
+
+// Carousel arrows
+var track=document.getElementById('track');
+document.querySelector('.arrow.l').onclick=function(){track.scrollBy({left:-400,behavior:'smooth'})};
+document.querySelector('.arrow.r').onclick=function(){track.scrollBy({left:400,behavior:'smooth'})};
+</script>
+</body>
+</html>
